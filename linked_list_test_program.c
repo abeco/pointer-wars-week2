@@ -567,8 +567,8 @@ int main(void) {
     //
     linked_list_register_malloc(&instrumented_malloc);
     linked_list_register_free(&free);
-    queue_register_malloc(&instrumented_malloc);
-    queue_register_free(&free);
+    //queue_register_malloc(&instrumented_malloc);
+    //queue_register_free(&free);
 
     check_null_handling();
     check_empty_list_and_queue_properties();
