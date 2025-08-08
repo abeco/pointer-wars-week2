@@ -1,0 +1,26 @@
+name: C CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up GCC
+      run: sudo apt-get install build-essential
+
+    - name: Install Dependencies
+      run: sudo apt-get install libcheck-dev  # Example for testing libraries
+
+    - name: Compile C Code
+      run: make  run_functional_tests
