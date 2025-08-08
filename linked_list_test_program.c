@@ -8,6 +8,8 @@
 #include "linked_list.h"
 #include "queue.h"
 
+
+// adding for testing the app
 // Check that valid compiler defines have been passed in.
 //
 #ifdef TEST_LINKED_LIST
