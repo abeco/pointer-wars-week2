@@ -22,5 +22,8 @@ jobs:
     # - name: Install Dependencies
     #   run: sudo apt-get install libcheck-dev  # Example for testing libraries
 
-    - name: Compile C Code
-      run: make  run_functional_tests
+    - name: Run Functional Tests
+      run: make run_functional_tests
+
+    - name: Run Valgrind Tests
+      run: make run_valgrind_tests
