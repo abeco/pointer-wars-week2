@@ -114,7 +114,7 @@ bool linked_list_insert(struct linked_list * ll,
     }
     
     // Failing to insert into empty list. Use insert_front
-    if(ll->head == NULL) {
+    if(ll->head == NULL || index == 0) {
         return linked_list_insert_front(ll, data);
     }
     struct iterator *new_iterator = linked_list_create_iterator(ll, index - 1);
