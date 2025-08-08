@@ -5,6 +5,7 @@ WARNINGS_ARE_ERRORS := -Wall -Wextra -Werror
 COMPILER_OPTIMIZATIONS := -O3 -g
 SO_FLAGS := -shared -fPIC -g 
 CFLAGS := $(WARNINGS_ARE_ERRORS) $(COMPILER_OPTIMIZATIONS)
+VALGRIND_FLAGS := --leak-check=full --track-origins=yes
 
 # Add any source files that you need to be compiled
 # for your linked list here.
@@ -59,7 +60,7 @@ run_functional_tests_gdb: linked_list_test_program
 	LD_LIBRARY_PATH=`pwd`:$$LD_LIBRARY_PATH gdb ./linked_list_test_program
 
 run_valgrind_tests: linked_list_test_program
-	LD_LIBRARY_PATH=`pwd`:$$LD_LIBRARY_PATH valgrind ./linked_list_test_program
+	LD_LIBRARY_PATH=`pwd`:$$LD_LIBRARY_PATH valgrind $(VALGRIND_FLAGS) ./linked_list_test_program
 
 run_performance_tests: queue_performance
 	LD_LIBRARY_PATH=`pwd`:$$LD_LIBRARY_PATH ./queue_performance
