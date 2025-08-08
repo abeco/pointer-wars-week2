@@ -19,8 +19,8 @@ jobs:
     - name: Set up GCC
       run: sudo apt-get install build-essential
 
-    - name: Install Dependencies
-      run: sudo apt-get install libcheck-dev  # Example for testing libraries
+    # - name: Install Dependencies
+    #   run: sudo apt-get install libcheck-dev  # Example for testing libraries
 
     - name: Compile C Code
       run: make  run_functional_tests
