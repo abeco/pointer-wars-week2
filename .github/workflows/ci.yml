@@ -7,6 +7,12 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      run_valgrind:
+        description: "Run Valgrind?"
+        type: boolean
+        default: false
 
 jobs:
   build_and_test:
@@ -19,15 +25,19 @@ jobs:
     - name: Set up GCC
       run: sudo apt-get install -y build-essential valgrind
 
-    # - name: Install Dependencies
-    #   run: sudo apt-get install libcheck-dev  # Example for testing libraries
-
     - name: Run Functional Tests
       run: make run_functional_tests
 
-    - name: Run Valgrind Tests
-      run: make run_valgrind_tests
-      continue-on-error: false
 
-    - name: Clean Up
-      run: make clean
+  run-valgrind:
+    needs: build_and_test
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_valgrind }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Valgrind
+        run: sudo apt-get update && sudo apt-get install -y build-essential valgrind
+     
+      - name: Run Valgrind Tests
+        run: make run_valgrind_tests
